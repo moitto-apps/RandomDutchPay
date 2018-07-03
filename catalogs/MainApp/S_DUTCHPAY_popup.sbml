@@ -1,0 +1,65 @@
+=begin popup
+
+=begin numbers
+=begin message
+참여할 인원수를 입력하세요.
+
+=begin small-message
+자기 자신도 포함시키세요.
+=end small-message
+=end message
+
+=begin input
+=object label: id=label.numbers, text="${numbers}", style=label_numbers
+
+=(object button: script=subtract_numbers, label="-1", style=btn_numbers)= =(object button: script=add_numbers, label="+1", style=btn_numbers)= 
+=end input
+
+=object button: script=next_to_amount, label="다음", style=btn_action
+
+=end numbers
+
+=begin amount
+
+=begin message
+${numbers}명이 더치페이할 금액를 입력하세요.
+
+=begin small-message
+원화로 입력하면 SBD 금액으로 자동 변환됩니다.
+=end small-message
+=end message
+
+=object section: section=amount.box, style=section_amount.box
+=begin box: id=amount.box, form=amount.box
+=begin content
+=object textfield: id=amount, text="${subview.amount}", \
+                script-when-editing@change=on_change_amount, \
+                valid-format="[0-9]*", prevents-invalid-text=yes, \
+                keyboard-type=decimal, \
+                invalid-when-empty=yes, message-when-empty="금액을 입력하세요.", \
+                style=textfield_amount
+=end content
+=end box
+
+=object label: id=label.amount.coin, text="xxxx", style=label_amount.coin
+
+=object button: script=next_to_random, form=amount.box, label="다음", style=btn_action, style=btn_amount
+
+=end amount
+
+=begin random
+
+=begin message
+랜덤으로 금액을 정하고 있습니다.
+
+=begin small-message
+계산이 끝나면 QR코드가 나옵니다.
+=end small-message
+=end message
+
+=end random
+
+=begin pays
+=end pays
+
+=end popup

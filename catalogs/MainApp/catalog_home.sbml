@@ -1,0 +1,9 @@
+=begin catalog
+
+=begin welcome
+랜덤 더치페이
+=end welcome
+
+=object button: script=start, label="시작하기", style=btn_action
+
+=end catalog

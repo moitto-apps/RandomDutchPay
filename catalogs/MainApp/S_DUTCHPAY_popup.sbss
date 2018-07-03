@@ -1,0 +1,51 @@
+import themes.sbss
+
+-- 인원수 --
+
+#label_numbers: margin-bottom=20dp, font-family=$SANSSERIF_BOLD, font-size=7, text-color=$BLACK_COLOR
+#btn_numbers: width=80dp, height=44dp, margin="0 5dp", \
+        label-font-family=$SANSSERIF_BOLD, label-font-size=1.4, label-color=$BLACK_COLOR, \
+        content-border-radius=2dp, content-background-color=$THEME_COLOR_03
+
+-- 송금액 --
+
+#section_amount.box: width=0.8pw, height=60dp, position=abs, gravity=center, y=-80dp, \
+            content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
+            content-background-color=$THEME_COLOR_00
+#textfield_amount: width="1pw-20dp", height=40dp, \
+            font-family=$SANSSERIF_BOLD, font-size=2.2, \
+            text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left, margin="10dp 0 0 0"
+
+#label_amount.coin: width=0.8pw-20dp, height=30dp, position=abs, gravity=center, y=-30dp, \
+            font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$BLACK_COLOR
+
+-- 액션 버튼 --
+
+#btn_action: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+#btn_amount: position=absolute, gravity=bottom, y=-260dp 
+
+/popup: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_102, action-when-touched=popup-close
+/popup/numbers: display=none, text-align=center
+/popup/amount: display=none, text-align=center
+/popup/random: display=none, text-align=center
+/popup/pays: display=none, text-align=center
+
+%message: display=block, position=abs, gravity=center, y=-160dp, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$BLACK_COLOR, \
+        paragraph-spacing=0.6em
+%small-message: font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$BLACK_COLOR
+
+%input: display=block, position=abs, gravity=center
+
+if "${status}" == "numbers"
+    /popup/numbers: display=section
+elif "${status}" == "amount"
+    /popup: first-responder=amount
+    /popup/amount: display=section
+elif "${status}" == "random"
+    /popup/random: display=section
+elif "${status}" == "pays"
+    /popup/pays: display=section
+end
